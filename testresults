@@ -1,0 +1,55 @@
+
+Executed below test scenarios with both c++ and go code
+1) Switching from home to abc directory
+	testuser:changeDir$ ./mycd ~/ abc
+	/home/testuser/abc
+
+2) Changing from abc/def to ghi
+
+	testuser:changeDir$ ./mycd ~/abc/def ghi
+	/home/testuser/abc/def/ghi
+
+3) Moving one directory back 
+	testuser:changeDir$ ./mycd ~/abc/def ..
+	/home/testuser/abc
+
+4) Moving from source to destination
+	testuser:changeDir$ ./mycd ~/abc/def ~/abc
+	/home/testuser/abc
+
+5) Check whether we can move to different child dir for same parent dir.
+	testuser:changeDir$ ./mycd ~/abc/def ~/abc/klm
+	/home/testuser/abc/klm
+
+
+6) Check two directories back
+
+	testuser:changeDir$ ./mycd ~/abc/def ../../
+	/home/testuser
+
+7) Check three directories back
+
+	testuser:changeDir$ ./mycd ~/abc/def ../../..
+	/home
+
+8)  Display source/current directory
+	testuser:changeDir$ ./mycd ~/abc/def .
+	/home/testuser/abc/def
+9) Check for target directory without proper syntax
+	testuser:changeDir$ ./mycd ~/abc/def ..klm
+	bash: cd: ..klm: No such file or directory
+
+	testuser:changeDir$ ./mycd ~/abc/def ../klm
+	/home/testuser/abc/klm
+10) Check with multiple farword slash
+
+	testuser:changeDir$ ./mycd ~/abc/def ///////
+	/
+
+11) Check  with more than 2 dots
+	testuser:changeDir$ ./mycd ~/abc/def ....
+	bash: cd: ....: No such file or directory
+
+12) Check with different type of directories
+	testuser:changeDir$ ./mycd ~/abc/def ../gh///../klm/.
+	/home/testuser/abc/klm
